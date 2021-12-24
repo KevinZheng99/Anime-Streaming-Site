@@ -1,0 +1,7 @@
+.list-header {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 3rem;
+}

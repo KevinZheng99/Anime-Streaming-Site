@@ -1,0 +1,14 @@
+.links {
+  list-style-type: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.link a {
+  color: white;
+  text-decoration: none;
+}
+
+.link a:hover {
+  color: #4ecca3;
+}

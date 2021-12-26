@@ -19,7 +19,7 @@ export default function NavLinks() {
         <a href="#">Popular</a>
       </li>
       <li className={classes.link}>
-        <a href="#">Seasons</a>
+        <a href="#">Upcoming</a>
       </li>
     </ul>
   );

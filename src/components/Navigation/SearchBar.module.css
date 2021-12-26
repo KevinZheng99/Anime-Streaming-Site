@@ -1,0 +1,15 @@
+.form {
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.25em 0.5em;
+}
+
+.search {
+  border: none;
+}
+
+.search:focus {
+  outline: none;
+}

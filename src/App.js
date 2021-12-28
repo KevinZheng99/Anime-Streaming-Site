@@ -7,7 +7,6 @@ function App() {
   const [userSearch, setUserSearch] = useState("");
 
   function getUserInput(input) {
-    console.log(input);
     setUserSearch(input);
   }
 

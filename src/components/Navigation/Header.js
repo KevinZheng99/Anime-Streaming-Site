@@ -8,7 +8,7 @@ import logo from "../../images/logo.png";
 export default function Header(props) {
   return (
     <div className={classes.header}>
-      <a href="#">
+      <a href="/">
         <img src={logo} alt="Our Logo" />
       </a>
       <NavLinks />

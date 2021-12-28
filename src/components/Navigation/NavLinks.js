@@ -7,19 +7,13 @@ export default function NavLinks() {
   return (
     <ul className={classes.links}>
       <li className={classes.link}>
-        <a href="#">Home</a>
+        <a href="/">Home</a>
       </li>
       <li className={classes.link}>
-        <a href="#">Anime List</a>
+        <a href="/">Popular</a>
       </li>
       <li className={classes.link}>
-        <a href="#">New Season</a>
-      </li>
-      <li className={classes.link}>
-        <a href="#">Popular</a>
-      </li>
-      <li className={classes.link}>
-        <a href="#">Upcoming</a>
+        <a href="/">Upcoming</a>
       </li>
     </ul>
   );

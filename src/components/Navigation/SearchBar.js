@@ -1,13 +1,22 @@
 import React, { useRef } from "react";
+import { createSearchParams, useNavigate } from "react-router-dom";
 
 import classes from "./SearchBar.module.css";
 
 export default function SearchBar(props) {
+  const navigate = useNavigate();
   const searchInput = useRef();
 
   function getSearchResult(event) {
     event.preventDefault();
     props.onUserInput(searchInput.current.value);
+
+    // Sets the path with the search query in the URL
+    navigate({
+      pathname: "search",
+      search: `?${createSearchParams({ keyword: searchInput.current.value })}`,
+    });
+
     searchInput.current.value = "";
   }
 

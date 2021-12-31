@@ -11,6 +11,12 @@ export default function SearchBar(props) {
     event.preventDefault();
     props.onUserInput(searchInput.current.value);
 
+    // // User search has to be length of at least 3
+    // if (searchInput.current.value.length < 3) {
+    //   window.alert("User search has to be of length 3 and above");
+    //   return;
+    // }
+
     // Sets the path with the search query in the URL
     navigate({
       pathname: "search",

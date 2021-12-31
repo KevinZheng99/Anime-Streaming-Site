@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import classes from "./NavLinks.module.css";
 
@@ -7,13 +8,13 @@ export default function NavLinks() {
   return (
     <ul className={classes.links}>
       <li className={classes.link}>
-        <a href="/">Home</a>
+        <Link to="/">Home</Link>
       </li>
       <li className={classes.link}>
-        <a href="/">Popular</a>
+        <Link to="/popular">Popular</Link>
       </li>
       <li className={classes.link}>
-        <a href="/">Upcoming</a>
+        <Link to="/upcoming">Upcoming</Link>
       </li>
     </ul>
   );

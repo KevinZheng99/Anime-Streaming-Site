@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Card from "./Card";
 import classes from "./AnimesContainer.module.css";
@@ -12,7 +13,7 @@ export default function AnimesContainer(props) {
           key={Math.random().toString(16).slice(2)}
         >
           <Card className={classes["card-container"]}>
-            <a className={classes["anime-link"]} href="#">
+            <Link className={classes["anime-link"]} to="#">
               <img
                 className={classes["anime-img"]}
                 src={anime["image_url"]}
@@ -29,11 +30,11 @@ export default function AnimesContainer(props) {
                   <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3 17v-10l9 5.146-9 4.854z" />
                 </svg>
               </div>
-            </a>
+            </Link>
           </Card>
-          <a className={classes["title-link"]} href="#">
+          <Link className={classes["title-link"]} to="#">
             {anime.title}
-          </a>
+          </Link>
         </div>
       ))}
     </div>

@@ -1,0 +1,39 @@
+/* Link container for the image */
+.anime-link {
+  position: absolute;
+  width: 200px;
+  min-height: 300px;
+}
+
+.anime-link:hover .anime-img {
+  filter: brightness(50%);
+}
+
+/* Actual Image */
+.anime-img {
+  border-radius: 10px;
+  width: 100%;
+  height: 300px;
+  transition: all 0.25s ease-out;
+}
+
+.anime-img:hover {
+  filter: brightness(50%);
+}
+
+/* Play button in the middle of the image */
+.middle {
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  transition: all 0.25s ease-out;
+}
+
+/* Make the play button visible when hovering */
+.anime-link:hover .middle {
+  opacity: 1;
+}

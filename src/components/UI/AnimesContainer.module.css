@@ -1,8 +1,7 @@
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
   margin: 0 3rem 3rem 3rem;
 }
 
@@ -13,42 +12,6 @@
   min-height: 300px;
 }
 
-/* Link container for the image */
-.anime-link {
-  position: absolute;
-  width: 200px;
-  min-height: 300px;
-}
-
-.anime-link:hover .anime-img {
-  filter: brightness(50%);
-}
-
-/* Actual Image */
-.anime-img {
-  border-radius: 10px;
-  width: 200px;
-  height: 300px;
-  transition: all 0.25s ease-out;
-}
-
-/* Play button in the middle of the image */
-.middle {
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  text-align: center;
-  transition: all 0.25s ease-out;
-}
-
-/* Make the play button visible when hovering */
-.anime-link:hover .middle {
-  opacity: 1;
-}
-
 .title-link {
   display: block;
   color: white;
@@ -57,7 +20,9 @@
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 100%;
+  margin: 0.25rem 0 1rem 0;
   margin-top: 0.25rem;
+  margin-bottom: 1rem;
   transition: all 0.25s ease-out;
 }
 

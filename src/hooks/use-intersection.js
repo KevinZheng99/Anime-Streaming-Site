@@ -30,7 +30,6 @@ function getIntersectionObserver() {
 
 export function useIntersection(elem, callback) {
   useEffect(() => {
-    console.log(elem);
     let target = elem.current;
     let observer = getIntersectionObserver();
     listenerCallbacks.set(target, callback);

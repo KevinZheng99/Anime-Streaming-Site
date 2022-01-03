@@ -24,7 +24,7 @@ export default function AnimeList(props) {
           element={<UpcomingAnimeList className={classes["list-header"]} />}
         />
         <Route
-          path="search/*"
+          path="search"
           element={
             <SearchAnimeList
               className={classes["list-header"]}

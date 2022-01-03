@@ -2,6 +2,9 @@ import React, { useState, useEffect, Fragment } from "react";
 
 import AnimesContainer from "../../UI/AnimesContainer";
 import ErrorPage from "../../UI/ErrorPage";
+import Pagination from "../Pagination/Pagination";
+
+import { usePagination } from "../../../hooks/use-pagination";
 
 const urlSearch = window.location.search;
 const indexOfEqual = urlSearch.indexOf("=");
@@ -11,6 +14,11 @@ export default function SearchAnimeList(props) {
   const [animeList, setAnimeList] = useState([]);
   const [isError, setIsError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
+
+  // Pagination vars
+  const [currentPage, setCurrentPage] = useState(1);
+  const paginatedList = usePagination(currentPage, animeList);
+
   const { userSearch } = props;
 
   useEffect(() => {
@@ -41,8 +49,9 @@ export default function SearchAnimeList(props) {
         <h2>Search results for "{userSearch ? userSearch : keyword}"</h2>
         <button>Filter</button>
       </div>
+      <Pagination filmList={animeList} setCurrentPage={setCurrentPage} />
       {!isError ? (
-        <AnimesContainer filmList={animeList} />
+        <AnimesContainer filmList={paginatedList} />
       ) : (
         <ErrorPage errorMessage={errMessage} />
       )}

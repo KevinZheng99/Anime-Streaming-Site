@@ -1,0 +1,28 @@
+.pagination-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  list-style-type: none;
+  margin: 2rem 0;
+}
+
+.page-button {
+  color: #393e46;
+  background-color: #eeeeee;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  text-decoration: none;
+  transition: all 0.25s ease-out;
+}
+
+.page-button:hover {
+  cursor: pointer;
+  background-color: #4ecca3;
+}

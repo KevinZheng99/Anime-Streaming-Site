@@ -2,12 +2,20 @@ import React, { useState, useEffect, Fragment } from "react";
 
 import AnimesContainer from "../../UI/AnimesContainer";
 import ErrorPage from "../../UI/ErrorPage";
+import Pagination from "../Pagination/Pagination";
+
+import { usePagination } from "../../../hooks/use-pagination";
 
 export default function PopularAnimeList(props) {
   const [animeList, setAnimeList] = useState([]);
   const [isError, setIsError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
 
+  // Pagination vars
+  const [currentPage, setCurrentPage] = useState(1);
+  const paginatedList = usePagination(currentPage, animeList);
+
+  // Fetch top anime by popularity
   useEffect(() => {
     async function getRecentAnime() {
       try {
@@ -19,7 +27,6 @@ export default function PopularAnimeList(props) {
 
         const data = await res.json();
         setAnimeList(data.top);
-        setIsError(false);
       } catch (error) {
         setIsError(true);
         setErrMessage(error.message);
@@ -34,8 +41,9 @@ export default function PopularAnimeList(props) {
         <h2>Popular Anime</h2>
         <button>Filter</button>
       </div>
+      <Pagination filmList={animeList} setCurrentPage={setCurrentPage} />
       {!isError ? (
-        <AnimesContainer filmList={animeList} />
+        <AnimesContainer filmList={paginatedList} />
       ) : (
         <ErrorPage errorMessage={errMessage} />
       )}

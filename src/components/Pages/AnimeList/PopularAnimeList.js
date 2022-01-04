@@ -20,13 +20,14 @@ export default function PopularAnimeList(props) {
     async function getRecentAnime() {
       try {
         const res = await fetch(
-          `https://api.jikan.moe/v3/top/anime/1/bypopularity`
+          `https://api.jikan.moe/v4/top/anime?&order_by=popularity&sfw`
         );
 
         if (!res.ok) throw new Error("Failed fetch of popular anime.");
 
         const data = await res.json();
-        setAnimeList(data.top);
+        console.log(data.data);
+        setAnimeList(data.data);
       } catch (error) {
         setIsError(true);
         setErrMessage(error.message);
@@ -41,7 +42,11 @@ export default function PopularAnimeList(props) {
         <h2>Popular Anime</h2>
         <button>Filter</button>
       </div>
-      <Pagination filmList={animeList} setCurrentPage={setCurrentPage} />
+      <Pagination
+        filmList={animeList}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
       {!isError ? (
         <AnimesContainer filmList={paginatedList} />
       ) : (

@@ -25,15 +25,16 @@ export default function SearchAnimeList(props) {
     async function getRecentAnime() {
       try {
         const res = await fetch(
-          `https://api.jikan.moe/v3/search/anime?q=${
+          `https://api.jikan.moe/v4/anime?q=${
             userSearch ? userSearch : keyword
-          }`
+          }&order_by=popularity&sfw`
         );
 
         if (!res.ok) throw new Error("No found result for user search.");
 
         const data = await res.json();
-        setAnimeList(data.results);
+        console.log(data.data);
+        setAnimeList(data.data);
         setIsError(false);
       } catch (error) {
         setIsError(true);
@@ -49,7 +50,11 @@ export default function SearchAnimeList(props) {
         <h2>Search results for "{userSearch ? userSearch : keyword}"</h2>
         <button>Filter</button>
       </div>
-      <Pagination filmList={animeList} setCurrentPage={setCurrentPage} />
+      <Pagination
+        filmList={animeList}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
       {!isError ? (
         <AnimesContainer filmList={paginatedList} />
       ) : (

@@ -1,1 +1,1 @@
-export const animesPerPage = 40;
+export const animesPerPage = 16;

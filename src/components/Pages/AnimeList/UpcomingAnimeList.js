@@ -19,13 +19,14 @@ export default function UpcomingAnimeList(props) {
     async function getRecentAnime() {
       try {
         const res = await fetch(
-          `https://api.jikan.moe/v3/top/anime/1/upcoming`
+          `https://api.jikan.moe/v4/anime?&status=upcoming&order_by=popularity&type=tv&sfw`
         );
 
         if (!res.ok) throw new Error("Failed fetch of upcoming anime.");
 
         const data = await res.json();
-        setAnimeList(data.top);
+        console.log(data.data);
+        setAnimeList(data.data);
         setIsError(false);
       } catch (error) {
         setIsError(true);
@@ -41,7 +42,11 @@ export default function UpcomingAnimeList(props) {
         <h2>Upcoming Anime</h2>
         <button>Filter</button>
       </div>
-      <Pagination filmList={animeList} setCurrentPage={setCurrentPage} />
+      <Pagination
+        filmList={animeList}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
       {!isError ? (
         <AnimesContainer filmList={paginatedList} />
       ) : (

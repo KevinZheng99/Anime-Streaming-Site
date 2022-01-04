@@ -23,7 +23,9 @@ export default function Pagination(props) {
     pageButtons.push(
       <li
         key={Math.random()}
-        className={classes["page-button"]}
+        className={`${classes["page-button"]} ${
+          props.currentPage === i ? classes.active : ""
+        }`}
         onClick={getPage}
       >
         {i}

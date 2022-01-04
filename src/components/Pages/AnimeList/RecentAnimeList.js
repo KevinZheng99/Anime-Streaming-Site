@@ -17,12 +17,15 @@ export default function UpcomingAnimeList(props) {
   useEffect(() => {
     async function getRecentAnime() {
       try {
-        const res = await fetch(`https://api.jikan.moe/v3/top/anime/1/airing`);
+        const res = await fetch(
+          `https://api.jikan.moe/v4/anime?&status=airing&order_by=popularity&sfw`
+        );
 
         if (!res.ok) throw new Error("Failed fetch of top airing anime.");
 
         const data = await res.json();
-        setAnimeList(data.top);
+        console.log(data.data);
+        setAnimeList(data.data);
       } catch (error) {
         setIsError(true);
         setErrMessage(error.message);
@@ -37,7 +40,11 @@ export default function UpcomingAnimeList(props) {
         <h2>Top Airing Anime</h2>
         <button>Filter</button>
       </div>
-      <Pagination filmList={animeList} setCurrentPage={setCurrentPage} />
+      <Pagination
+        filmList={animeList}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
       {!isError ? (
         <AnimesContainer filmList={paginatedList} />
       ) : (

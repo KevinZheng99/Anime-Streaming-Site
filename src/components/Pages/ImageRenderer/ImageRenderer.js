@@ -17,7 +17,7 @@ export default function ImageRenderer(props) {
         <Link className={classes["anime-link"]} to="#">
           <img
             className={classes["anime-img"]}
-            src={props.animeObj["image_url"]}
+            src={props.animeObj.images.jpg["image_url"]}
             alt={props.alt}
           />
           <div className={classes.middle}>

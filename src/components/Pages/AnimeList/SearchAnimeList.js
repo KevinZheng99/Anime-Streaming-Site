@@ -26,7 +26,11 @@ export default function SearchAnimeList(props) {
     async function getRecentAnime() {
       try {
         const res = await fetch(
+<<<<<<< HEAD
           `${baseUrl}/anime?q=${
+=======
+          `https://api.jikan.moe/v4/anime?q=${
+>>>>>>> 6317c4a7c3cc33e32c84c0d8826493de8c5bc432
             userSearch ? userSearch : keyword
           }&order_by=popularity&sfw`
         );
@@ -34,6 +38,10 @@ export default function SearchAnimeList(props) {
         if (!res.ok) throw new Error("No found result for user search.");
 
         const data = await res.json();
+<<<<<<< HEAD
+=======
+        console.log(data.data);
+>>>>>>> 6317c4a7c3cc33e32c84c0d8826493de8c5bc432
         setAnimeList(data.data);
         setIsError(false);
       } catch (error) {
@@ -46,9 +54,16 @@ export default function SearchAnimeList(props) {
 
   return (
     <Fragment>
+<<<<<<< HEAD
       <h2 className={props.className}>
         Search results for "{userSearch ? userSearch : keyword}"
       </h2>
+=======
+      <div className={props.className}>
+        <h2>Search results for "{userSearch ? userSearch : keyword}"</h2>
+        <button>Filter</button>
+      </div>
+>>>>>>> 6317c4a7c3cc33e32c84c0d8826493de8c5bc432
       <Pagination
         filmList={animeList}
         currentPage={currentPage}

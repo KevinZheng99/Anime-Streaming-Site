@@ -1,0 +1,34 @@
+.container {
+  color: #eeeeee;
+  width: 70%;
+  margin: auto;
+}
+
+/* Main Content */
+
+.main-content {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.film-type {
+  color: #4ecca3;
+  font-size: 1rem;
+}
+
+.synopsis {
+  width: 50%;
+}
+
+.film-poster {
+  width: 280px;
+}
+
+/* Trailer */
+
+.trailer {
+  width: 100%;
+  min-height: 500px;
+  margin-bottom: 5rem;
+}

@@ -26,3 +26,7 @@
   cursor: pointer;
   background-color: #4ecca3;
 }
+
+.page-button.active {
+  background-color: #4ecca3;
+}

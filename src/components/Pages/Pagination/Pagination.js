@@ -7,7 +7,11 @@ import classes from "./Pagination.module.css";
 export default function Pagination(props) {
   const navigate = useNavigate();
 
-  const pages = Math.ceil(props.filmList.length / animesPerPage);
+  const filteredFilmList = props.filmList.filter(
+    (anime) => anime.popularity !== 0
+  );
+
+  const pages = Math.ceil(filteredFilmList.length / animesPerPage);
   const pageButtons = [];
 
   // Sets the current page clicked by the user
@@ -23,7 +27,9 @@ export default function Pagination(props) {
     pageButtons.push(
       <li
         key={Math.random()}
-        className={classes["page-button"]}
+        className={`${classes["page-button"]} ${
+          props.currentPage === i ? classes.active : ""
+        }`}
         onClick={getPage}
       >
         {i}

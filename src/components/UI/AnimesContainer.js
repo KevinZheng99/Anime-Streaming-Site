@@ -21,7 +21,10 @@ export default function AnimesContainer(props) {
                 alt={anime.title}
               />
             </Card>
-            <Link className={classes["title-link"]} to="#">
+            <Link
+              className={classes["title-link"]}
+              to={`/detail/${anime["mal_id"]}`}
+            >
               {anime.title}
             </Link>
           </div>

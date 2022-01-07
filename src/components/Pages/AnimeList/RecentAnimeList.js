@@ -5,39 +5,45 @@ import ErrorPage from "../../UI/ErrorPage";
 import Pagination from "../Pagination/Pagination";
 
 import { usePagination } from "../../../hooks/use-pagination";
+import { baseUrl } from "../../../config";
 
 export default function UpcomingAnimeList(props) {
-  const [animeList, setAnimeList] = useState([]);
   const [isError, setIsError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
+  const { animeList, setAnimeList } = props;
 
+  // Pagination vars
   const [currentPage, setCurrentPage] = useState(1);
   const paginatedList = usePagination(currentPage, animeList);
 
   useEffect(() => {
     async function getRecentAnime() {
       try {
-        const res = await fetch(`https://api.jikan.moe/v3/top/anime/1/airing`);
+        const res = await fetch(
+          `${baseUrl}/anime?&status=airing&order_by=rank&sfw`
+        );
 
         if (!res.ok) throw new Error("Failed fetch of top airing anime.");
 
         const data = await res.json();
-        setAnimeList(data.top);
+        // console.log(data.data);
+        setAnimeList(data.data);
       } catch (error) {
         setIsError(true);
         setErrMessage(error.message);
       }
     }
     getRecentAnime();
-  }, []);
+  }, [setAnimeList]);
 
   return (
     <Fragment>
-      <div className={props.className}>
-        <h2>Top Airing Anime</h2>
-        <button>Filter</button>
-      </div>
-      <Pagination filmList={animeList} setCurrentPage={setCurrentPage} />
+      <h2 className={props.className}>Top Airing Anime</h2>
+      <Pagination
+        filmList={animeList}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
       {!isError ? (
         <AnimesContainer filmList={paginatedList} />
       ) : (

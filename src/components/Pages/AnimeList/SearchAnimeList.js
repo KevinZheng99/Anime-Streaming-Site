@@ -5,6 +5,7 @@ import ErrorPage from "../../UI/ErrorPage";
 import Pagination from "../Pagination/Pagination";
 
 import { usePagination } from "../../../hooks/use-pagination";
+import { baseUrl } from "../../../config";
 
 const urlSearch = window.location.search;
 const indexOfEqual = urlSearch.indexOf("=");
@@ -25,15 +26,15 @@ export default function SearchAnimeList(props) {
     async function getRecentAnime() {
       try {
         const res = await fetch(
-          `https://api.jikan.moe/v3/search/anime?q=${
+          `${baseUrl}/anime?q=${
             userSearch ? userSearch : keyword
-          }`
+          }&order_by=popularity&sfw`
         );
 
         if (!res.ok) throw new Error("No found result for user search.");
 
         const data = await res.json();
-        setAnimeList(data.results);
+        setAnimeList(data.data);
         setIsError(false);
       } catch (error) {
         setIsError(true);
@@ -45,11 +46,14 @@ export default function SearchAnimeList(props) {
 
   return (
     <Fragment>
-      <div className={props.className}>
-        <h2>Search results for "{userSearch ? userSearch : keyword}"</h2>
-        <button>Filter</button>
-      </div>
-      <Pagination filmList={animeList} setCurrentPage={setCurrentPage} />
+      <h2 className={props.className}>
+        Search results for "{userSearch ? userSearch : keyword}"
+      </h2>
+      <Pagination
+        filmList={animeList}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
       {!isError ? (
         <AnimesContainer filmList={paginatedList} />
       ) : (

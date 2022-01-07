@@ -20,21 +20,12 @@ export default function UpcomingAnimeList(props) {
     async function getRecentAnime() {
       try {
         const res = await fetch(
-<<<<<<< HEAD
           `${baseUrl}/anime?&status=airing&order_by=rank&sfw`
-=======
-          `https://api.jikan.moe/v4/anime?&status=airing&order_by=popularity&sfw`
->>>>>>> 6317c4a7c3cc33e32c84c0d8826493de8c5bc432
         );
 
         if (!res.ok) throw new Error("Failed fetch of top airing anime.");
 
         const data = await res.json();
-<<<<<<< HEAD
-        // console.log(data.data);
-=======
-        console.log(data.data);
->>>>>>> 6317c4a7c3cc33e32c84c0d8826493de8c5bc432
         setAnimeList(data.data);
       } catch (error) {
         setIsError(true);
@@ -46,14 +37,7 @@ export default function UpcomingAnimeList(props) {
 
   return (
     <Fragment>
-<<<<<<< HEAD
       <h2 className={props.className}>Top Airing Anime</h2>
-=======
-      <div className={props.className}>
-        <h2>Top Airing Anime</h2>
-        <button>Filter</button>
-      </div>
->>>>>>> 6317c4a7c3cc33e32c84c0d8826493de8c5bc432
       <Pagination
         filmList={animeList}
         currentPage={currentPage}

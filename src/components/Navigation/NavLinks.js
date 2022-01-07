@@ -16,6 +16,9 @@ export default function NavLinks() {
       <li className={classes.link}>
         <Link to="/upcoming">Upcoming</Link>
       </li>
+      <li className={classes.link}>
+        <Link to="/manga">Manga</Link>
+      </li>
     </ul>
   );
 }

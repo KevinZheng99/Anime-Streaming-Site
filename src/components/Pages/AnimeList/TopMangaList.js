@@ -1,45 +1,45 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 
+import Pagination from "../Pagination/Pagination";
 import AnimesContainer from "../../UI/AnimesContainer";
 import ErrorPage from "../../UI/ErrorPage";
-import Pagination from "../Pagination/Pagination";
 
 import { usePagination } from "../../../hooks/use-pagination";
 import { baseUrl } from "../../../config";
 
-export default function UpcomingAnimeList(props) {
+export default function TopMangaList(props) {
+  const [mangaList, setMangaList] = useState([]);
   const [isError, setIsError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
-  const { animeList, setAnimeList } = props;
 
   // Pagination vars
   const [currentPage, setCurrentPage] = useState(1);
-  const paginatedList = usePagination(currentPage, animeList);
+  const paginatedList = usePagination(currentPage, mangaList);
 
+  // Fetch top anime by popularity
   useEffect(() => {
     async function getRecentAnime() {
       try {
-        const res = await fetch(
-          `${baseUrl}/anime?&status=upcoming&order_by=popularity&sfw`
-        );
+        const res = await fetch(`${baseUrl}/top/manga?&sfw`);
 
-        if (!res.ok) throw new Error("Failed fetch of upcoming anime.");
+        if (!res.ok) throw new Error("Failed fetch of popular anime.");
 
         const data = await res.json();
-        setAnimeList(data.data);
+        console.log(data);
+        setMangaList(data.data);
       } catch (error) {
         setIsError(true);
         setErrMessage(error.message);
       }
     }
     getRecentAnime();
-  }, [setAnimeList]);
+  }, []);
 
   return (
     <Fragment>
-      <h2 className={props.className}>Upcoming Anime</h2>
+      <h2 className={props.className}>Top Manga</h2>
       <Pagination
-        filmList={animeList}
+        filmList={mangaList}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
       />

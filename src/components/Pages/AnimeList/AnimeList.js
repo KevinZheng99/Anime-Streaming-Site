@@ -5,6 +5,7 @@ import RecentAnimeList from "./RecentAnimeList";
 import PopularAnimeList from "./PopularAnimeList";
 import SearchAnimeList from "./SearchAnimeList";
 import UpcomingAnimeList from "./UpcomingAnimeList";
+import TopMangaList from "./TopMangaList";
 import classes from "./AnimeList.module.css";
 import Detail from "../Details/Detail";
 
@@ -52,6 +53,10 @@ export default function AnimeList(props) {
               userSearch={props.userSearch}
             />
           }
+        />
+        <Route
+          path="manga"
+          element={<TopMangaList className={classes["list-header"]} />}
         />
         <Route path="detail/:id" element={<Detail />} />
         {/* Info page for the anime you chose */}

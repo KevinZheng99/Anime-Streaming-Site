@@ -68,7 +68,7 @@ export default function Detail(props) {
           </div>
         </div>
       </div>
-      {props.isAnime ? <FilmTrailer animeData={animeData} /> : <></>}
+      {isAnime ? <FilmTrailer animeData={animeData} /> : <></>}
     </div>
   );
 }

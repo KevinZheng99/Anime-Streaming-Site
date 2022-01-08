@@ -36,6 +36,8 @@ export default function PopularAnimeList(props) {
     getRecentAnime();
   }, [setAnimeList]);
 
+  if (animeList.length === 0) return <></>;
+
   return (
     <Fragment>
       <h2 className={props.className}>Popular Anime</h2>

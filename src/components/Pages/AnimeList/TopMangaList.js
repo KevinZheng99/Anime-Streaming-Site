@@ -11,6 +11,7 @@ export default function TopMangaList(props) {
   const [mangaList, setMangaList] = useState([]);
   const [isError, setIsError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
+  const { setIsAnime } = props;
 
   // Pagination vars
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +26,6 @@ export default function TopMangaList(props) {
         if (!res.ok) throw new Error("Failed fetch of popular anime.");
 
         const data = await res.json();
-        console.log(data);
         setMangaList(data.data);
       } catch (error) {
         setIsError(true);
@@ -33,7 +33,7 @@ export default function TopMangaList(props) {
       }
     }
     getRecentAnime();
-  }, []);
+  }, [setIsAnime]);
 
   return (
     <Fragment>

@@ -1,11 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Card from "./Card";
 import classes from "./AnimesContainer.module.css";
 import ImageRenderer from "../Pages/ImageRenderer/ImageRenderer";
 
 export default function AnimesContainer(props) {
+  const location = useLocation();
+  console.log(location);
+
   return (
     <div className={classes.container}>
       {props.filmList.map((anime) => {
@@ -23,7 +26,7 @@ export default function AnimesContainer(props) {
             </Card>
             <Link
               className={classes["title-link"]}
-              to={`/detail/${anime["mal_id"]}`}
+              to={`${location.pathname}/detail/${anime["mal_id"]}`}
             >
               {anime.title}
             </Link>

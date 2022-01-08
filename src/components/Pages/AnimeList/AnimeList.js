@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import RecentAnimeList from "./RecentAnimeList";
 import PopularAnimeList from "./PopularAnimeList";
 import SearchAnimeList from "./SearchAnimeList";
 import UpcomingAnimeList from "./UpcomingAnimeList";
 import TopMangaList from "./TopMangaList";
-import classes from "./AnimeList.module.css";
 import Detail from "../Details/Detail";
+import classes from "./AnimeList.module.css";
 
 export default function AnimeList(props) {
   const [animeList, setAnimeList] = useState([]);
@@ -15,8 +15,9 @@ export default function AnimeList(props) {
   return (
     <div>
       <Routes>
+        <Route path="/" element={<Navigate replace to="/recent" />} />
         <Route
-          path="/"
+          path="/recent"
           element={
             <RecentAnimeList
               className={classes["list-header"]}
@@ -58,7 +59,7 @@ export default function AnimeList(props) {
           path="manga"
           element={<TopMangaList className={classes["list-header"]} />}
         />
-        <Route path="detail/:id" element={<Detail />} />
+        <Route path=":tab/detail/:id" element={<Detail />} />
         {/* Info page for the anime you chose */}
       </Routes>
     </div>

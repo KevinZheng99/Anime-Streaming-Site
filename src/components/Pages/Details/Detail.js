@@ -1,26 +1,35 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 import ErrorPage from "../../UI/ErrorPage";
 import { baseUrl } from "../../../config";
 import classes from "./Detail.module.css";
+import FilmTrailer from "./FilmTrailer";
 
-export default function Detail() {
+export default function Detail(props) {
   const [animeData, setAnimeData] = useState("");
   const [isError, setIsError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
 
   const id = useParams();
 
+  // Vars to check if current details should be anime or manga
+  let isAnime = false;
+  const location = useLocation();
+  if (location.pathname.split("/")[1] !== "manga") {
+    isAnime = true;
+  }
+
   useEffect(() => {
     async function getRecentAnime() {
       try {
-        const res = await fetch(`${baseUrl}/anime/${id.id}`);
+        const res = await fetch(
+          `${baseUrl}/${isAnime ? "anime" : "manga"}/${id.id}`
+        );
 
         if (!res.ok) throw new Error("Failed fetch of anime details.");
 
         const data = await res.json();
-        console.log(data.data);
         setAnimeData(data.data);
       } catch (error) {
         setIsError(true);
@@ -28,7 +37,7 @@ export default function Detail() {
       }
     }
     getRecentAnime();
-  }, [id]);
+  }, [id, isAnime]);
 
   // If empty return nothing
   if (animeData === "") return <></>;
@@ -59,17 +68,7 @@ export default function Detail() {
           </div>
         </div>
       </div>
-
-      <div>TRAILER:</div>
-      {animeData.trailer["embed_url"] ? (
-        <iframe
-          className={classes.trailer}
-          src={animeData.trailer["embed_url"]}
-          title="trailer"
-        ></iframe>
-      ) : (
-        <div>No trailer for this anime yet.</div>
-      )}
+      {props.isAnime ? <FilmTrailer animeData={animeData} /> : <></>}
     </div>
   );
 }

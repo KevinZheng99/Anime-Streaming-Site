@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { useIntersection } from "../../../hooks/use-intersection";
 import classes from "./ImageRenderer.module.css";
@@ -11,12 +11,14 @@ export default function ImageRenderer(props) {
     setIsInView(true);
   });
 
+  const location = useLocation();
+
   return (
     <div className="image-container" ref={imgRef}>
       {isInView && (
         <Link
           className={classes["anime-link"]}
-          to={`/detail/${props.animeObj["mal_id"]}`}
+          to={`${location.pathname}/detail/${props.animeObj["mal_id"]}`}
         >
           <img
             className={classes["anime-img"]}

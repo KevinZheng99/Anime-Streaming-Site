@@ -11,7 +11,6 @@ export default function TopMangaList(props) {
   const [mangaList, setMangaList] = useState([]);
   const [isError, setIsError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
-  const { setIsAnime } = props;
 
   // Pagination vars
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,7 +32,7 @@ export default function TopMangaList(props) {
       }
     }
     getRecentAnime();
-  }, [setIsAnime]);
+  }, []);
 
   return (
     <Fragment>

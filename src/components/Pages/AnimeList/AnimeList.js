@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import RecentAnimeList from "./RecentAnimeList";
@@ -10,41 +10,21 @@ import Detail from "../Details/Detail";
 import classes from "./AnimeList.module.css";
 
 export default function AnimeList(props) {
-  const [animeList, setAnimeList] = useState([]);
-
   return (
     <div>
       <Routes>
         <Route path="/" element={<Navigate replace to="/recent" />} />
         <Route
           path="/recent"
-          element={
-            <RecentAnimeList
-              className={classes["list-header"]}
-              animeList={animeList}
-              setAnimeList={setAnimeList}
-            />
-          }
+          element={<RecentAnimeList className={classes["list-header"]} />}
         />
         <Route
           path="popular"
-          element={
-            <PopularAnimeList
-              className={classes["list-header"]}
-              animeList={animeList}
-              setAnimeList={setAnimeList}
-            />
-          }
+          element={<PopularAnimeList className={classes["list-header"]} />}
         />
         <Route
           path="upcoming"
-          element={
-            <UpcomingAnimeList
-              className={classes["list-header"]}
-              animeList={animeList}
-              setAnimeList={setAnimeList}
-            />
-          }
+          element={<UpcomingAnimeList className={classes["list-header"]} />}
         />
         <Route
           path="search"

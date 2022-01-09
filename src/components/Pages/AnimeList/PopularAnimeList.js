@@ -8,9 +8,9 @@ import { usePagination } from "../../../hooks/use-pagination";
 import { baseUrl } from "../../../config";
 
 export default function PopularAnimeList(props) {
+  const [animeList, setAnimeList] = useState([]);
   const [isError, setIsError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
-  const { animeList, setAnimeList } = props;
 
   // Pagination vars
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,7 +34,7 @@ export default function PopularAnimeList(props) {
       }
     }
     getRecentAnime();
-  }, [setAnimeList]);
+  }, []);
 
   if (animeList.length === 0) return <></>;
 

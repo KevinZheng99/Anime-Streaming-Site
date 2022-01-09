@@ -7,7 +7,6 @@ import ImageRenderer from "../Pages/ImageRenderer/ImageRenderer";
 
 export default function AnimesContainer(props) {
   const location = useLocation();
-  console.log(location);
 
   return (
     <div className={classes.container}>

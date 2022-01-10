@@ -3,6 +3,7 @@ import React, { useState, useEffect, Fragment } from "react";
 import AnimesContainer from "../../UI/AnimesContainer";
 import ErrorPage from "../../UI/ErrorPage";
 import Pagination from "../Pagination/Pagination";
+import Loading from "../../UI/Loading";
 
 import { usePagination } from "../../../hooks/use-pagination";
 import { baseUrl } from "../../../config";
@@ -43,6 +44,8 @@ export default function SearchAnimeList(props) {
     }
     getRecentAnime();
   }, [userSearch]);
+
+  if (animeList.length === 0) return <Loading />;
 
   return (
     <Fragment>

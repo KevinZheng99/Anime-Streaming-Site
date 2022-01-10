@@ -13,3 +13,9 @@
 .link a:hover {
   color: #4ecca3;
 }
+
+a.disabled {
+  color: #4ecca3;
+  pointer-events: none;
+  cursor: default;
+}

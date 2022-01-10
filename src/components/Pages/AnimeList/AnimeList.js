@@ -1,11 +1,8 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import RecentAnimeList from "./RecentAnimeList";
-import PopularAnimeList from "./PopularAnimeList";
 import SearchAnimeList from "./SearchAnimeList";
-import UpcomingAnimeList from "./UpcomingAnimeList";
-import TopMangaList from "./TopMangaList";
+import ContentList from "./ContentList";
 import Detail from "../Details/Detail";
 import classes from "./AnimeList.module.css";
 
@@ -16,15 +13,15 @@ export default function AnimeList(props) {
         <Route path="/" element={<Navigate replace to="/recent" />} />
         <Route
           path="/recent"
-          element={<RecentAnimeList className={classes["list-header"]} />}
+          element={<ContentList className={classes["list-header"]} />}
         />
         <Route
           path="popular"
-          element={<PopularAnimeList className={classes["list-header"]} />}
+          element={<ContentList className={classes["list-header"]} />}
         />
         <Route
           path="upcoming"
-          element={<UpcomingAnimeList className={classes["list-header"]} />}
+          element={<ContentList className={classes["list-header"]} />}
         />
         <Route
           path="search"
@@ -37,7 +34,7 @@ export default function AnimeList(props) {
         />
         <Route
           path="manga"
-          element={<TopMangaList className={classes["list-header"]} />}
+          element={<ContentList className={classes["list-header"]} />}
         />
         <Route path=":tab/detail/:id" element={<Detail />} />
         {/* Info page for the anime you chose */}

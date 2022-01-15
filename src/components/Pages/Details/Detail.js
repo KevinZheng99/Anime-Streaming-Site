@@ -5,6 +5,7 @@ import ErrorPage from "../../UI/ErrorPage";
 import { baseUrl } from "../../../config";
 import classes from "./Detail.module.css";
 import FilmTrailer from "./FilmTrailer";
+import Loading from "../../UI/Loading";
 
 export default function Detail(props) {
   const [animeData, setAnimeData] = useState("");
@@ -40,7 +41,7 @@ export default function Detail(props) {
   }, [id, isAnime]);
 
   // If empty return nothing
-  if (animeData === "") return <></>;
+  if (animeData === "") return <Loading />;
 
   // Return error page
   if (isError) return <ErrorPage errorMessage={errMessage} />;

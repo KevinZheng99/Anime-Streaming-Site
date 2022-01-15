@@ -18,11 +18,21 @@
 }
 
 .synopsis {
-  width: 50%;
+  width: 100%;
 }
 
 .film-poster {
   width: 280px;
 }
 
-/* Trailer */
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 375px) {
+  .film-poster {
+    width: 200px;
+  }
+}

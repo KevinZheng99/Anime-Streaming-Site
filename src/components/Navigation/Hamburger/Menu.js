@@ -1,77 +1,68 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Fragment } from "react/cjs/react.production.min";
+import { useLocation, Link } from "react-router-dom";
 
-import classes from "./NavLinks.module.css";
-import logo from "../../images/logo.png";
+import classes from "./Menu.module.css";
 
-// Switch these links to Routes when components for these links are created
-export default function NavLinks() {
+export default function Menu(props) {
   const location = useLocation();
   const isDetailPage = !location.pathname.includes("detail");
 
   return (
-    <Fragment>
-      <Link
-        to="/"
-        className={
-          location.pathname.startsWith("/recent") && isDetailPage
-            ? classes.disabled
-            : ""
-        }
-      >
-        <img src={logo} alt="Our Logo" className={classes.logo} />
-      </Link>
+    <nav className={`${classes.menu} ${props.isOpen ? classes.open : ""}`}>
       <ul className={classes.links}>
-        <li className={classes.link}>
+        <li>
           <Link
             to="/recent"
-            className={
+            className={`${classes.link} ${
               location.pathname.startsWith("/recent") && isDetailPage
                 ? classes.disabled
                 : ""
-            }
+            }`}
+            onClick={props.closeMenu}
           >
             Home
           </Link>
         </li>
-        <li className={classes.link}>
+        <li>
           <Link
             to="/popular"
-            className={
+            className={`${classes.link} ${
               location.pathname.startsWith("/popular") && isDetailPage
                 ? classes.disabled
                 : ""
-            }
+            }`}
+            onClick={props.closeMenu}
           >
             Popular
           </Link>
         </li>
-        <li className={classes.link}>
+        <li>
           <Link
             to="/upcoming"
-            className={
+            className={`${classes.link} ${
               location.pathname.startsWith("/upcoming") && isDetailPage
                 ? classes.disabled
                 : ""
-            }
+            }`}
+            onClick={props.closeMenu}
           >
             Upcoming
           </Link>
         </li>
-        <li className={classes.link}>
+        <li>
           <Link
             to="/manga"
-            className={
+            className={`${classes.link} ${
               location.pathname.startsWith("/manga") && isDetailPage
                 ? classes.disabled
                 : ""
-            }
+            }`}
+            onClick={props.closeMenu}
           >
             Manga
           </Link>
         </li>
       </ul>
-    </Fragment>
+    </nav>
   );
 }

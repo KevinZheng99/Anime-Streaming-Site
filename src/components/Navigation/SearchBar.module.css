@@ -13,3 +13,9 @@
 .search:focus {
   outline: none;
 }
+
+@media (max-width: 375px) {
+  .search {
+    width: 100px;
+  }
+}

@@ -9,16 +9,18 @@ import Loading from "../../UI/Loading";
 import { usePagination } from "../../../hooks/use-pagination";
 import {
   baseUrl,
-  pathRecent,
-  pathPopular,
-  pathUpcoming,
-  pathManga,
+  recentObj,
+  popularObj,
+  upcomingObj,
+  mangaObj,
   defaultPage,
 } from "../../../config";
 
 export default function ContentList(props) {
   const [contentList, setContentList] = useState([]);
+  const [pageTitle, setPageTitle] = useState("");
 
+  // Error vars
   const [isError, setIsError] = useState(false);
   const [errMessage, setErrMessage] = useState("");
 
@@ -26,6 +28,7 @@ export default function ContentList(props) {
   const [currentPage, setCurrentPage] = useState(defaultPage);
   const paginatedList = usePagination(currentPage, contentList);
 
+  // Navigation vars
   const location = useLocation();
   const curPath = location.pathname.split("/")[1];
 
@@ -34,20 +37,24 @@ export default function ContentList(props) {
     let currentUrl = "";
     switch (curPath) {
       case "recent":
-        currentUrl = pathRecent;
+        currentUrl = recentObj.path;
         setCurrentPage(defaultPage);
+        setPageTitle(recentObj.title);
         break;
       case "popular":
-        currentUrl = pathPopular;
+        currentUrl = popularObj.path;
         setCurrentPage(defaultPage);
+        setPageTitle(popularObj.title);
         break;
       case "upcoming":
-        currentUrl = pathUpcoming;
+        currentUrl = upcomingObj.path;
         setCurrentPage(defaultPage);
+        setPageTitle(upcomingObj.title);
         break;
       case "manga":
-        currentUrl = pathManga;
+        currentUrl = mangaObj.path;
         setCurrentPage(defaultPage);
+        setPageTitle(mangaObj.title);
         break;
       default:
         break;
@@ -61,7 +68,7 @@ export default function ContentList(props) {
         const res = await fetch(`${baseUrl}${currentUrl}`);
 
         if (res.status === 429) console.log("OOOPS"); // Too many requests give user error
-        if (!res.ok) throw new Error("Failed fetch of popular anime.");
+        if (!res.ok) throw new Error("Failed fetch of specified anime list.");
 
         const data = await res.json();
         setContentList(data.data);
@@ -77,7 +84,7 @@ export default function ContentList(props) {
 
   return (
     <Fragment>
-      <h2 className={props.className}>Popular Anime</h2>
+      <h2 className={props.className}>{pageTitle}</h2>
       <Pagination
         filmList={contentList}
         currentPage={currentPage}

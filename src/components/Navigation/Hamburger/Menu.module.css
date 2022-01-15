@@ -40,3 +40,9 @@
 .link:hover {
   color: #393e46;
 }
+
+@media (max-width: 425px) {
+  .menu.open {
+    width: 75%;
+  }
+}
